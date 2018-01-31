@@ -1,4 +1,5 @@
-import Functions
+from src import Functions
+
 data = Functions.getInput()
 target = Functions.getOutput()
 
