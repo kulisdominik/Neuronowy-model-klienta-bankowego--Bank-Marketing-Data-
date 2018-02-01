@@ -3,15 +3,12 @@ import pandas
 def openFile():
     # with open('bank-additional-full.csv') as fileDataSet:
     #     dataSet = csv.reader(fileDataSet, delimiter=';')
-    dataSet = pandas.read_csv('bank-additional-full.csv', sep=';')
-    return  dataSet
+    return pandas.read_csv('bank-additional-full.csv', sep=';')
+
 
 def getInput():
     dataSet = openFile()
-    categories = [
-        'age', 'job', 'marital', 'education', 'default', 'housing', 'loan', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m'
-    ]
-
+    categories = ['age', 'job', 'marital', 'education', 'default', 'housing', 'loan', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m']
     dataSet = dataSet[list(categories)]
 
     age = pandas.get_dummies(dataSet['age'])
@@ -27,11 +24,11 @@ def getInput():
     euribor3m = pandas.get_dummies(dataSet['euribor3m'])
 
     return pandas.concat (
-        [
-            age, job, marital, education, default, housing, loan, emp_var_rate, cons_price_idx,cons_conf_idx, euribor3m
-        ],
+        [age, job, marital, education, default, housing, loan, emp_var_rate, cons_price_idx,cons_conf_idx, euribor3m],
         axis=1
     )
+
+
 def getOutput():
     dataSet = openFile()
     y = pandas.get_dummies(dataSet['y'])
